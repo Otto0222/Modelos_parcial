@@ -76,7 +76,7 @@ if not filtered_df.empty:
 df_term_comparison = df.groupby(["Term", "Year"])["Enrolled"].sum().reset_index()
 
 # Plot the enrolled students across Spring and Fall
-fig_term_comparison = px.line(df_term_comparison, x="Year", y="Enrolled", color="Term", barmode="group", title="Spring vs Fall Enrollment Trends")
+fig_term_comparison = px.line(df_term_comparison, x="Year", y="Enrolled", color="Term", title="Spring vs Fall Enrollment Trends")
 st.plotly_chart(fig_term_comparison)
 
 
