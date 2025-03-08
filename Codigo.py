@@ -12,7 +12,8 @@ df = pd.read_csv('university_student_dashboard_data.csv')
 print(df.head())
 
 
-# Interface
+
+# Create Interface and headlines
 # Sidebar Filters
 st.sidebar.header("Filters")
 selected_year = st.sidebar.selectbox("Select Year", df["Year"].unique())
@@ -20,6 +21,7 @@ selected_term = st.sidebar.selectbox("Select Term", df["Term"].unique())
 
 # Dashboard Title
 st.title("University Admissions & Student Satisfaction Dashboard")
+
 
 
 # Total applications, admissions and enrollments per term
@@ -39,6 +41,7 @@ st.metric("Total Admissions", total_admissions)
 st.metric("Total Enrollments", total_enrollments)
 
 
+
 # Retention rate trends over time
 # Group the retention rates by years
 df_retention_trend = df.groupby(["Year"])["Retention Rate (%)"].mean().reset_index()
@@ -46,6 +49,7 @@ df_retention_trend = df.groupby(["Year"])["Retention Rate (%)"].mean().reset_ind
 # Plot the retention rate trends across the years 
 fig_retention = px.line(df_retention_trend, x="Year", y="Retention Rate (%)", title="Retention Rate Trends")
 st.plotly_chart(fig_retention)
+
 
 
 # Student Satisfaction Score over the years
@@ -57,12 +61,24 @@ fig_satisfaction = px.line(df_satisfaction_trend, x="Year", y="Student Satisfact
 st.plotly_chart(fig_satisfaction)
 
 
+
 # Enrollment Breakdown by Department
 if not filtered_df.empty:
     department_enrollment = filtered_df[["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]].sum()
     department_df = pd.DataFrame({"Department": department_enrollment.index, "Enrolled": department_enrollment.values})
     fig_enrollment = px.bar(department_df, x="Department", y="Enrolled", title="Enrollment by Department", color="Department")
     st.plotly_chart(fig_enrollment)
+
+
+
+# Comparison between Spring vs Fall trends
+# Group the enrolled data by terms and year
+df_term_comparison = df.groupby(["Term", "Year"])["Enrolled"].sum().reset_index()
+
+# Plot the enrolled students across Spring and Fall
+fig_term_comparison = px.bar(df_term_comparison, x="Year", y="Enrolled", color="Term", barmode="group", title="Spring vs Fall Enrollment Trends")
+st.plotly_chart(fig_term_comparison)
+
 
 
 # Compare trends between departments, retention rates, and satisfaction levels
