@@ -13,10 +13,9 @@ print(df.head())
 # Sidebar Filters
 st.sidebar.header("Filters")
 selected_term = st.sidebar.selectbox("Select Term", df["Term"].unique())
-selected_department = st.sidebar.multiselect("Select Departments", df["Department"].unique(), default=df["Department"].unique())
 
 # Filtered Data
-df_filtered = df[(df["Term"] == selected_term) & (df["Department"].isin(selected_department))]
+df_filtered = df[(df["Term"] == selected_term)
 
 # KPI Calculations
 total_applications = df_filtered["Applications"].sum()
