@@ -14,12 +14,19 @@ print(df.head())
 st.sidebar.header("Filters")
 selected_term = st.sidebar.selectbox("Select Term", df["Term"].unique())
 
-# Filtered Data
-df_filtered = df[(df["Term"] == selected_term)
-
 # KPI Calculations
-total_applications = df_filtered["Applications"].sum()
-total_admissions = df_filtered["Admissions"].sum()
-total_enrollments = df_filtered["Enrollments"].sum()
-retention_rate = df_filtered["Retention Rate"].mean()
-satisfaction_score = df_filtered["Satisfaction Score"].mean()
+total_applications = df[df["Term"] == selected_term]["Applications"].sum()
+total_admissions = df[df["Term"] == selected_term]["Admitted"].sum()
+total_enrollments = df[df["Term"] == selected_term]["Enrolled"].sum()
+retention_rate = df[df["Term"] == selected_term]["Retention Rate (%)"].mean()
+satisfaction_score = df[df["Term"] == selected_term]["Student Satisfaction (%)"].mean()
+
+# Dashboard Title
+st.title("University Admissions & Student Satisfaction Dashboard")
+
+# Display KPIs
+st.metric("Total Applications", total_applications)
+st.metric("Total Admissions", total_admissions)
+st.metric("Total Enrollments", total_enrollments)
+st.metric("Average Retention Rate", f"{retention_rate:.2f}%")
+st.metric("Average Satisfaction Score", f"{satisfaction_score:.2f}/10")
