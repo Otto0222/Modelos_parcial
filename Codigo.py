@@ -66,11 +66,10 @@ if not filtered_df.empty:
 
 
 # Compare trends between departments, retention rates, and satisfaction levels
-if not filtered_df.empty:
-    department_trends = filtered_df.melt(id_vars=["Year"], 
-                                         value_vars=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
-                                         var_name="Department", 
-                                         value_name="Enrolled")
-    department_trends["Department"] = department_trends["Department"].str.replace(" Enrolled", "")
-    fig_department_trends = px.line(department_trends, x="Year", y="Enrolled", color="Department", title="Enrollment Trends by Department")
-    st.plotly_chart(fig_department_trends)
+department_trends = df.melt(id_vars=["Year"], 
+                             value_vars=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
+                             var_name="Department", 
+                             value_name="Enrolled")
+department_trends["Department"] = department_trends["Department"].str.replace(" Enrolled", "")
+fig_department_trends = px.line(department_trends, x="Year", y="Enrolled", color="Department", title="Enrollment Trends by Department")
+st.plotly_chart(fig_department_trends)
