@@ -49,7 +49,7 @@ fig_retention = px.line(df_retention_trend, x="Year", y="Retention Rate (%)", ti
 st.plotly_chart(fig_retention)
 
 # Text interpretation from results
-st.write("### Interpretacion")
+st.write("### Interpretación")
 st.write("La tasa de retención se había mostrado inestable al inicio, teniendo subidas y bajadas entre el 2015 y el 2020. Sin embargo, a partir del 2020 ha estado en ascenso, lo que sugiere un mayor número de estudiantes satisfechos con el servicio brindado por la universidad.")
 
 
@@ -78,16 +78,6 @@ if not filtered_df.empty:
 
 
 
-# Comparison between Spring vs Fall trends
-# Group the enrolled data by terms and year
-df_term_comparison = df.groupby(["Term", "Year"])["Enrolled"].sum().reset_index()
-
-# Plot the enrolled students across Spring and Fall
-fig_term_comparison = px.line(df_term_comparison, x="Year", y="Enrolled", color="Term", title="Spring vs Fall Enrollment Trends")
-st.plotly_chart(fig_term_comparison)
-
-
-
 # Compare trends between departments, retention rates, and satisfaction levels
 department_trends = df.melt(id_vars=["Year"], 
                              value_vars=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
@@ -96,3 +86,25 @@ department_trends = df.melt(id_vars=["Year"],
 department_trends["Department"] = department_trends["Department"].str.replace(" Enrolled", "")
 fig_department_trends = px.line(department_trends, x="Year", y="Enrollment", color="Department", title="Enrollment Trends by Department")
 st.plotly_chart(fig_department_trends)
+
+# Text interpretation from results
+st.write("### Interpretación")
+st.write("El número de estudiantes matriculados varía a lo largo de los departamentos. Se observa una mayor demanda en los departamentos de ingeniería y negocios en comparación con los de arte y ciencias")
+
+
+
+# Comparison between Spring vs Fall trends
+# Group the enrolled data by terms and year
+df_term_comparison = df.groupby(["Term", "Year"])["Enrolled"].sum().reset_index()
+
+# Plot the enrolled students across Spring and Fall
+fig_term_comparison = px.line(df_term_comparison, x="Year", y="Enrolled", color="Term", title="Spring vs Fall Enrollment Trends")
+st.plotly_chart(fig_term_comparison)
+
+# Text interpretation from results
+st.write("### Interpretación")
+st.write("La matrícula se mantiene constante en las temporadas de primavera y otoño. Esto indica que no hay ninguna preferencia por parte de los estudiantes a matricular en una temporada u otra.")
+
+
+
+
