@@ -49,7 +49,7 @@ fig_retention = px.line(df_retention_trend, x="Year", y="Retention Rate (%)", ti
 st.plotly_chart(fig_retention)
 
 # Text interpretation from results
-st.write("### Interpretación")
+st.write("### Interpretación (Retention rate)")
 st.write("La tasa de retención se había mostrado inestable al inicio, teniendo subidas y bajadas entre el 2015 y el 2020. Sin embargo, a partir del 2020 ha estado en ascenso, lo que sugiere un mayor número de estudiantes satisfechos con el servicio brindado por la universidad.")
 
 
@@ -58,12 +58,12 @@ st.write("La tasa de retención se había mostrado inestable al inicio, teniendo
 # Group the student satisfaction by years
 df_satisfaction_trend = df.groupby(["Year"])["Student Satisfaction (%)"].mean().reset_index()
 
-# Plot the retention rate trends across the years 
+# Plot the Satisfaction Score trends across the years 
 fig_satisfaction = px.line(df_satisfaction_trend, x="Year", y="Student Satisfaction (%)", title="Student Satisfaction Trends")
 st.plotly_chart(fig_satisfaction)
 
 # Text interpretation from results
-st.write("### Interpretación")
+st.write("### Interpretación (Satisfaction Score)")
 st.write("La satisfacción de los estudiantes con el servicio prestado por la universidad puede confirmarse con la gráfica de satisfacción. Esta se mantiene en ascenso a excepción por una caída en el 2020, que se pudo dar por factores externos.")
 st.write("También se puede observar que ha habido un gran aumento en la satisfacción de los estudiantes en comparación con el año inicial, habiendo aumentado la satisfacción del 78% al 88% en menos de 10 años.")
 
@@ -88,7 +88,7 @@ fig_department_trends = px.line(department_trends, x="Year", y="Enrollment", col
 st.plotly_chart(fig_department_trends)
 
 # Text interpretation from results
-st.write("### Interpretación")
+st.write("### Interpretación (Trends by departments)")
 st.write("El número de estudiantes matriculados varía a lo largo de los departamentos. Se observa una mayor demanda en los departamentos de ingeniería y negocios en comparación con los de arte y ciencias")
 
 
@@ -102,7 +102,7 @@ fig_term_comparison = px.line(df_term_comparison, x="Year", y="Enrolled", color=
 st.plotly_chart(fig_term_comparison)
 
 # Text interpretation from results
-st.write("### Interpretación")
+st.write("### Interpretación (Spring vs Fall trends)")
 st.write("La matrícula se mantiene constante en las temporadas de primavera y otoño. Esto indica que no hay ninguna preferencia por parte de los estudiantes a matricular en una temporada u otra.")
 
 
