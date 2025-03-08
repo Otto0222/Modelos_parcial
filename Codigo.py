@@ -57,3 +57,20 @@ fig_satisfaction = px.line(df_satisfaction_trend, x="Year", y="Student Satisfact
 st.plotly_chart(fig_satisfaction)
 
 
+# Enrollment Breakdown by Department
+if not filtered_df.empty:
+    department_enrollment = filtered_df[["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]].sum()
+    department_df = pd.DataFrame({"Department": department_enrollment.index, "Enrolled": department_enrollment.values})
+    fig_enrollment = px.bar(department_df, x="Department", y="Enrolled", title="Enrollment by Department", color="Department")
+    st.plotly_chart(fig_enrollment)
+
+
+# Compare trends between departments, retention rates, and satisfaction levels
+if not filtered_df.empty:
+    department_trends = filtered_df.melt(id_vars=["Year"], 
+                                         value_vars=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
+                                         var_name="Department", 
+                                         value_name="Enrolled")
+    department_trends["Department"] = department_trends["Department"].str.replace(" Enrolled", "")
+    fig_department_trends = px.line(department_trends, x="Year", y="Enrolled", color="Department", title="Enrollment Trends by Department")
+    st.plotly_chart(fig_department_trends)
