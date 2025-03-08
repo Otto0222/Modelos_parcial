@@ -50,6 +50,12 @@ df_retention_trend = df.groupby(["Year"])["Retention Rate (%)"].mean().reset_ind
 fig_retention = px.line(df_retention_trend, x="Year", y="Retention Rate (%)", title="Retention Rate Trends")
 st.plotly_chart(fig_retention)
 
+# Text interpretation from results
+st.write("### Interpretacion")
+st.write("""La tasa de retención se había mostrado inestable al inicio, teniendo subidas y bajadas entre el 2015 y el 2020. Sin embargo, a partir del 2020 ha estado en ascenso, lo que sugiere
+un mayor número de estudiantes satisfechos con el servicio brindado por la universidad.""")
+
+
 
 
 # Student Satisfaction Score over the years
