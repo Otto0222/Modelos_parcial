@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
 import streamlit as st
 
@@ -52,9 +50,7 @@ st.plotly_chart(fig_retention)
 
 # Text interpretation from results
 st.write("### Interpretacion")
-st.write("""La tasa de retención se había mostrado inestable al inicio, teniendo subidas y bajadas entre el 2015 y el 2020. Sin embargo, a partir del 2020 ha estado en ascenso, lo que sugiere
-un mayor número de estudiantes satisfechos con el servicio brindado por la universidad.""")
-
+st.write("La tasa de retención se había mostrado inestable al inicio, teniendo subidas y bajadas entre el 2015 y el 2020. Sin embargo, a partir del 2020 ha estado en ascenso, lo que sugiere un mayor número de estudiantes satisfechos con el servicio brindado por la universidad.")
 
 
 
