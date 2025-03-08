@@ -62,6 +62,11 @@ df_satisfaction_trend = df.groupby(["Year"])["Student Satisfaction (%)"].mean().
 fig_satisfaction = px.line(df_satisfaction_trend, x="Year", y="Student Satisfaction (%)", title="Student Satisfaction Trends")
 st.plotly_chart(fig_satisfaction)
 
+# Text interpretation from results
+st.write("### Interpretación")
+st.write("La satisfacción de los estudiantes con el servicio prestado por la universidad puede confirmarse con la gráfica de satisfacción. Esta se mantiene en ascenso a excepción por una caída en el 2020, que se pudo dar por factores externos.")
+st.write("También se puede observar que ha habido un gran aumento en la satisfacción de los estudiantes en comparación con el año inicial, habiendo aumentado la satisfacción del 78% al 88% en menos de 10 años.")
+
 
 
 # Enrollment Breakdown by Department
