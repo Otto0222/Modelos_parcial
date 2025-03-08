@@ -16,14 +16,14 @@ selected_year = st.sidebar.selectbox("Select Year", df["Year"].unique())
 selected_term = st.sidebar.selectbox("Select Term", df["Term"].unique())
 
 # Filter Data
-df_filtered = df[(df["Year"] == selected_year) & (df["Term"] == selected_term)]
+filtered_df = df[(df["Year"] == selected_year) & (df["Term"] == selected_term)]
 
 # KPI Calculations
-total_applications = df_filtered["Applications"].sum()
-total_admissions = df_filtered["Admitted"].sum()
-total_enrollments = df_filtered["Enrolled"].sum()
-retention_rate = df_filtered["Retention Rate (%)"].mean()
-satisfaction_score = df_filtered["Student Satisfaction (%)"].mean()
+total_applications = filtered_df["Applications"].iloc[0]
+total_admissions = filtered_df["Admitted"].iloc[0]
+total_enrollments = filtered_df["Enrolled"].iloc[0]
+retention_rate = filtered_df["Retention Rate (%)"].iloc[0]
+satisfaction_score = filtered_df["Student Satisfaction (%)"].iloc[0]
 
 
 # Dashboard Title
