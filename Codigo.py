@@ -12,14 +12,19 @@ print(df.head())
 
 # Sidebar Filters
 st.sidebar.header("Filters")
+selected_year = st.sidebar.selectbox("Select Year", df["Year"].unique())
 selected_term = st.sidebar.selectbox("Select Term", df["Term"].unique())
 
+# Filter Data
+df_filtered = df[(df["Year"] == selected_year) & (df["Term"] == selected_term)]
+
 # KPI Calculations
-total_applications = df[df["Term"] == selected_term]["Applications"].sum()
-total_admissions = df[df["Term"] == selected_term]["Admitted"].sum()
-total_enrollments = df[df["Term"] == selected_term]["Enrolled"].sum()
-retention_rate = df[df["Term"] == selected_term]["Retention Rate (%)"].mean()
-satisfaction_score = df[df["Term"] == selected_term]["Student Satisfaction (%)"].mean()
+total_applications = df_filtered["Applications"].sum()
+total_admissions = df_filtered["Admitted"].sum()
+total_enrollments = df_filtered["Enrolled"].sum()
+retention_rate = df_filtered["Retention Rate (%)"].mean()
+satisfaction_score = df_filtered["Student Satisfaction (%)"].mean()
+
 
 # Dashboard Title
 st.title("University Admissions & Student Satisfaction Dashboard")
